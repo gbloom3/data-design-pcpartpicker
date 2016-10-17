@@ -48,6 +48,7 @@
 			<h3>CPU</h3>
 			<ul>
 				<li>cpuId (Primary key)</li>
+				<li>cpuModelName</li>
 				<li>cpuManufacturer</li>
 				<li>cpuDataWidth</li>
 				<li>cpuSocket</li>
@@ -60,14 +61,14 @@
 				<li>cpuOnboardGraphics</li>
 			</ul>
 
-			<h3>Comment</h3>
+			<h3>Review</h3>
 			<ul>
-				<li>commentId (Primary key)</li>
-				<li>commentProfileId (Foreign key from Profile)</li>
-				<li>commentCpuId (Foreign key from CPU)</li>
-				<li>commentTimeDate</li>
-				<li>commentText</li>
-				<li>commentRating</li>
+				<li>reviewId (Primary key)</li>
+				<li>reviewProfileId (Foreign key from Profile)</li>
+				<li>reviewCpuId (Foreign key from CPU)</li>
+				<li>reviewTimeDate</li>
+				<li>reviewText</li>
+				<li>reviewRating</li>
 			</ul>
 
 			<h3>Profile</h3>
@@ -80,6 +81,9 @@
 				<li>profileAbout</li>
 			</ul>
 
+		</section>
+		<section>
+			<img src="img/diagram.png"/>
 		</section>
 		<hr/>
 	</main>
