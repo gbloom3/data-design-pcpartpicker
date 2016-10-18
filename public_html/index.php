@@ -61,16 +61,6 @@
 				<li>cpuOnboardGraphics</li>
 			</ul>
 
-			<h3>Review</h3>
-			<ul>
-				<li>reviewId (Primary key)</li>
-				<li>reviewProfileId (Foreign key from Profile)</li>
-				<li>reviewCpuId (Foreign key from CPU)</li>
-				<li>reviewTimeDate</li>
-				<li>reviewText</li>
-				<li>reviewRating</li>
-			</ul>
-
 			<h3>Profile</h3>
 			<ul>
 				<li>profileId (Primary key)</li>
@@ -79,6 +69,15 @@
 				<li>profileDateCreated</li>
 				<li>profileEmail</li>
 				<li>profileAbout</li>
+			</ul>
+
+			<h3>Review</h3>
+			<ul>
+				<li>reviewProfileId (Foreign key from Profile) - Composite</li>
+				<li>reviewCpuId (Foreign key from CPU) - Composite</li>
+				<li>reviewTimeDate</li>
+				<li>reviewText</li>
+				<li>reviewRating</li>
 			</ul>
 
 		</section>

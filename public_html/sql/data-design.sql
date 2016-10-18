@@ -4,17 +4,19 @@ DROP TABLE IF EXISTS profile;
 
 CREATE TABLE cpu(
 	cpuId INT UNSIGNED AUTO_INCREMENT NOT NULL,
-	cpuModelName VARCHAR(30) NOT NULL,
 	cpuManufacturer VARCHAR(20) NOT NULL,
+	cpuModelName VARCHAR(30) NOT NULL,
+	cpuModelNumber VARCHAR(20) NOT NULL,
 	cpuDataWidth CHAR(2) NOT NULL,
-	cpuSocket VARCHAR(10),
+	cpuSocket VARCHAR(10) NOT NULL ,
 	cpuOperatingFrequency DEC(2,1) NOT NULL,
 	cpuTurboFrequency DEC(2,1),
-	cpuCores TINYINT ,
+	cpuCores TINYINT NOT NULL ,
 	cpuCache TEXT,
 	cpuCoolerIncluded BOOL,
 	cpuHyperThreading BOOL,
 	cpuOnboardGraphics BOOL,
+	INDEX (cpuModelNumber),
 	INDEX (cpuDataWidth),
 	INDEX (cpuSocket),
 	INDEX (cpuOperatingFrequency),
@@ -36,7 +38,6 @@ CREATE TABLE profile(
 );
 
 CREATE TABLE review(
-	reviewId INT UNSIGNED AUTO_INCREMENT NOT NULL,
 	reviewProfileId INT UNSIGNED NOT NULL,
 	reviewCpuId INT UNSIGNED NOT NULL,
 	reviewTimeDate DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -46,6 +47,6 @@ CREATE TABLE review(
 	INDEX (reviewCpuId),
 	FOREIGN KEY (reviewProfileId) REFERENCES profile(profileId),
 	FOREIGN KEY (reviewCpuId) REFERENCES cpu(cpuId),
-	PRIMARY KEY (reviewId)
+	PRIMARY KEY (reviewProfileId, reviewCpuId)
 );
 
