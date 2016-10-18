@@ -2,6 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
+		<link href="css/stylesheet.css" rel="stylesheet" type="text/css" />
 		<title>Data Design: PC Part Picker</title>
 	</head>
 	<body>
@@ -82,7 +83,7 @@
 
 		</section>
 		<section>
-			<img src="img/diagram.png" alt="ERD Diagram"/>
+			<img class="image" src="img/diagram.png" alt="ERD Diagram"/>
 		</section>
 		<hr/>
 	</main>
