@@ -29,7 +29,7 @@ CREATE TABLE profile(
 	profileImage VARCHAR(30) NOT NULL,
 	profileName VARCHAR(20) NOT NULL,
 	profileDateCreated DATE NOT NULL,
-	profileEmail VARCHAR(10) NOT NULL,
+	profileEmail VARCHAR(254) NOT NULL,
 	profileAbout TEXT,
 	UNIQUE(profileName),
 	PRIMARY KEY (profileId)
