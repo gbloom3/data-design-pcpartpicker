@@ -83,7 +83,7 @@
 
 		</section>
 		<section>
-			<img src="img/diagram.png"/>
+			<img src="img/diagram.png" alt="ERD Diagram"/>
 		</section>
 		<hr/>
 	</main>
