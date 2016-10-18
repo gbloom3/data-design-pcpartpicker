@@ -16,20 +16,20 @@
 		<section>
 			<h2>Persona</h2>
 			<hr/>
-			<p>Name: David Wilson</p>
-			<p>Age: 27</p>
-			<p>Profession: Musician, Starbucks Barista</p>
-			<p>Technology: 15" HP laptop, running Windows 10</p>
+			<p><strong>Name:</strong> David Wilson</p>
+			<p><strong>Age:</strong> 27</p>
+			<p><strong>Profession:</strong> Musician, Starbucks Barista</p>
+			<p><strong>Technology:</strong> 15" HP laptop, running Windows 10</p>
 			<p>
-				Attitudes and Behaviors: Impulsive-Shopper. David will only spend an hour at most researching before making his purchase. David has heard of PCPartPicker and has begun using it for his prospective build. He still has yet to choose a processor.
+				<strong>Attitudes and Behaviors:</strong> Impulsive-Shopper. David will only spend an hour at most researching before making his purchase. David has heard of PCPartPicker and has begun using it for his prospective build. He still has yet to choose a processor.
 			</p>
 
 			<p>
-				Frustrations and Needs: David needs a CPU that will be compatible with his build. David is also looking for a CPU that will work well for gaming and music production. Because David is unsure what specifications he is looking for, he has a large amount of CPUs to search through.<br/>
+				<strong>Frustrations and Needs:</strong> David needs a CPU that will be compatible with his build. David is also looking for a CPU that will work well for gaming and music production. Because David is unsure what specifications he is looking for, he has a large amount of CPUs to search through.<br/>
 				In the next few days, he hopes to put the whole build together, so that he can show it off at a LAN party. But, he has put off purchasing his CPU and to get reasonable shipping he needs to order in the next 30 minutes.
 			</p>
 			<p>
-				Goals: David only has one concern: Is this the best CPU for the price? Will he be able to find a compatible CPU in only 30 minutes?
+				<strong>Goals:</strong> David only has one concern: Is this the best CPU for the price? Will he be able to find a compatible CPU in only 30 minutes?
 			</p>
 		</section>
 
