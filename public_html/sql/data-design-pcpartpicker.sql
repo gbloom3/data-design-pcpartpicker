@@ -9,12 +9,17 @@ CREATE TABLE cpu(
 	cpuDataWidth CHAR(2) NOT NULL,
 	cpuSocket VARCHAR(10),
 	cpuOperatingFrequency DEC(2,1) NOT NULL,
-	cpuTurbofrequency DEC(2,1),
+	cpuTurboFrequency DEC(2,1),
 	cpuCores TINYINT ,
 	cpuCache TEXT,
 	cpuCoolerIncluded BOOL,
 	cpuHyperThreading BOOL,
 	cpuOnboardGraphics BOOL,
+	INDEX (cpuDataWidth),
+	INDEX (cpuSocket),
+	INDEX (cpuOperatingFrequency),
+	INDEX (cpuTurboFrequency),
+	INDEX (cpuCores),
 	UNIQUE(cpuModelName),
 	PRIMARY KEY (cpuId)
 );
