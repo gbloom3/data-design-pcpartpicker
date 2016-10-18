@@ -16,17 +16,19 @@ CREATE TABLE cpu(
 	cpuHyperThreading BOOL,
 	cpuOnboardGraphics BOOL,
 	UNIQUE(cpuModelName),
-	PRIMARY KEY (cpuId));
+	PRIMARY KEY (cpuId)
+);
 
 CREATE TABLE profile(
 	profileId INT UNSIGNED AUTO_INCREMENT NOT NULL,
 	profileImage VARCHAR(30) NOT NULL,
 	profileName VARCHAR(20) NOT NULL,
-	profileDateCreated DATETIME DEFAULT CURRENT_TIMESTAMP,
+	profileDateCreated DATE NOT NULL,
 	profileEmail VARCHAR(10) NOT NULL,
 	profileAbout TEXT,
 	UNIQUE(profileName),
-	PRIMARY KEY (profileId));
+	PRIMARY KEY (profileId)
+);
 
 CREATE TABLE review(
 	reviewId INT UNSIGNED AUTO_INCREMENT NOT NULL,
@@ -39,5 +41,6 @@ CREATE TABLE review(
 	INDEX (reviewCpuId),
 	FOREIGN KEY (reviewProfileId) REFERENCES profile(profileId),
 	FOREIGN KEY (reviewCpuId) REFERENCES cpu(cpuId),
-	PRIMARY KEY (reviewId));
+	PRIMARY KEY (reviewId)
+);
 
