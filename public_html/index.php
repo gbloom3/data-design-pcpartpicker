@@ -49,17 +49,18 @@
 			<h3>CPU</h3>
 			<ul>
 				<li>cpuId (Primary key)</li>
-				<li>cpuModelName</li>
 				<li>cpuManufacturer</li>
+				<li>cpuModelName</li>
+				<li>cpuModelNumber</li>
 				<li>cpuDataWidth</li>
 				<li>cpuSocket</li>
 				<li>cpuOperatingFrequency</li>
 				<li>cpuTurboFrequency</li>
 				<li>cpuCores</li>
 				<li>cpuCache</li>
-				<li>cpuCoolerIncluded</li>
-				<li>cpuHyperThreading</li>
-				<li>cpuOnboardGraphics</li>
+				<li>cpuIsCoolerIncluded</li>
+				<li>cpuIsHyperThreading</li>
+				<li>cpuIsOnboardGraphics</li>
 			</ul>
 
 			<h3>Profile</h3>
