@@ -2,8 +2,8 @@
 /**
  * User Profile Class
  *
- * This Profile will contain the users information for use on their profile page. This can be extended to include favorite cpu's and other
- * information.
+ * This Profile will contain the users information that can be viewed on their profile page. This can be extended to include favorite cpu's
+ * and other information.
  *
  * @author Greg Bloom <gbloomdev@gmail.com>
  * @version 0.0.1
