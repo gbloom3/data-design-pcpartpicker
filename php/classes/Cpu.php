@@ -2,7 +2,7 @@
 /**
  * Cpu Information Class
  *
- * *I NEED TO COME BACK TO THIS*
+ * This Cpu will access and store data. This can be extended to include further attributes that may be needed.
  *
  * @author Greg Bloom <gbloomdev@gmail.com>
  * @version 0.0.1
