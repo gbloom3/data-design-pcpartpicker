@@ -5,7 +5,7 @@
  * This Cpu will access and store data. This can be extended to include further attributes that may be needed.
  *
  * @author Greg Bloom <gbloomdev@gmail.com>
- * @version 0.0.1
+ * @version 0.1.0
  **/
 
 class Cpu{

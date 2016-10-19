@@ -6,7 +6,7 @@
  * and other information.
  *
  * @author Greg Bloom <gbloomdev@gmail.com>
- * @version 0.0.1
+ * @version 0.1.0
  **/
 
 class Profile{
