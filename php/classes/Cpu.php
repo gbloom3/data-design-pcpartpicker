@@ -168,9 +168,46 @@ class Cpu{
 	public function getCpuIsOnboardGraphics() {
 		return $this->cpuIsOnboardGraphics;
 	}
+
+	/**
+	 * constructor for this Cpu
+	 *
+	 * @param int $newCpuId new value of cpu id
+	 * @param string $newCpuManufacturer new value of cpu manufacturer
+	 * @param string $newCpuModelName new value of cpu model name
+	 * @param string $newCpuModelNumber new value of cpu model number
+	 * @param int $newCpuDataWidth new value of cpu data width
+	 * @param string $newCpuSocket new value of cpu socket
+	 * @param float $newCpuOperatingFrequency new value of cpu operating frequency
+	 * @param float $newCpuTurboFrequency new value of cpu turbo frequency
+	 * @param int $newCpuCores new value of cpu cores
+	 * @param string $newCpuCache new value of cpu cache
+	 * @param bool $newCpuIsCoolerIncluded new value of boolean cooler included
+	 * @param bool $newCpuIsHyperThreading new value of boolean hyperthreading
+	 * @param bool $newCpuIsOnboardGraphics new value of boolean onboard graphics
+	 * @throws UnexpectedValueException if any of the parameters are invalid
+	 **/
+	public function _construct($newCpuId,$newCpuManufacturer,$newCpuModelName,$newCpuModelNumber,$newCpuDataWidth,$newCpuSocket,$newCpuOperatingFrequency,$newCpuTurboFrequency,$newCpuCores,$newCpuCache,$newCpuIsCoolerIncluded,$newCpuIsHyperThreading, $newCpuIsOnboardGraphics){
+		try{
+			$this->setCpuId($newCpuId);
+			$this->setCpuManufacturer($newCpuManufacturer);
+			$this->setCpuModelName($newCpuModelName);
+			$this->setCpuModelNumber($newCpuModelNumber);
+			$this->setCpuDataWidth($newCpuDataWidth);
+			$this->setCpuSocket($newCpuSocket);
+			$this->setCpuOperatingFrequency($newCpuOperatingFrequency);
+			$this->setCpuTurboFrequency($newCpuTurboFrequency);
+			$this->setCpuCores($newCpuCores);
+			$this->setCpuCache($newCpuCache);
+			$this->setCpuIsCoolerIncluded($newCpuIsCoolerIncluded);
+			$this->setCpuIsHyperThreading($newCpuIsHyperThreading);
+			$this->setCpuIsOnboardGraphics($newCpuIsOnboardGraphics);
+		}catch(UnexpectedValueException $exception) {
+			throw (new UnexpectedValueException("Unable to construct Cpu",0,$exception));
+		}
+	}
 	/**
 	 * mutator method for cpuId
-	 *
 	 * @param int|null $newCpuId new value of cpu id
 	 * @throws \RangeException if $newCpuId is negative
 	 * @throws \TypeError if $newCpuId is not an integer
@@ -187,5 +224,167 @@ class Cpu{
 		}
 		// converts and stores the cpu id
 		$this->cpuId = $newCpuId;
+	}
+
+	/**
+	 * mutator method for cpuManufacturer
+	 * @param string $newCpuManufacturer new value of cpu manufacturer
+	 * @throws \UnexpectedValueException if $newCpuManufacturer is not a valid string
+	 **/
+	public function setCpuManufacturer(string $newCpuManufacturer) {
+		$newCpuManufacturer = filter_var($newCpuManufacturer,FILTER_SANITIZE_EMAIL);
+		if($newCpuManufacturer === false){
+			throw (new \UnexpectedValueException("manufacturer is not a valid string"));
+		}
+		$this->cpuManufacturer = $newCpuManufacturer;
+	}
+
+	/**
+	 * mutator method for cpuModelName
+	 * @param string $newCpuModelName new value of cpu model name
+	 * @throws \UnexpectedValueException if $newCpuModelName is not a valid string
+	 **/
+	public function setCpuModelName(string $newCpuModelName) {
+		$newCpuModelName = filter_var($newCpuModelName,FILTER_SANITIZE_EMAIL);
+		if($newCpuModelName === false){
+			throw (new \UnexpectedValueException("model name is not a valid string"));
+		}
+		$this->cpuModelName = $newCpuModelName;
+	}
+
+	/**
+	 * mutator method for cpuModelNumber
+	 * @param string $newCpuModelNumber new value of cpu model number
+	 * @throws \UnexpectedValueException if $newCpuModelNumber is not a valid string
+	 **/
+	public function setCpuModelNumber(string $newCpuModelNumber) {
+		$newCpuModelNumber = filter_var($newCpuModelNumber,FILTER_SANITIZE_EMAIL);
+		if($newCpuModelNumber === false){
+			throw (new \UnexpectedValueException("model number is not a valid string"));
+		}
+		$this->cpuModelNumber = $newCpuModelNumber;
+	}
+
+	/**
+	 * mutator method for cpuDataWidth
+	 * @param int $newCpuDataWidth new value of cpu data width
+	 * @throws \RangeException if $newCpuDataWidth is negative
+	 * @throws \TypeError if $newCpuDataWidth is not an integer
+	 **/
+	public function setCpuDataWidth(int $newCpuDataWidth) {
+		$newCpuDataWidth = filter_var($newCpuDataWidth,FILTER_VALIDATE_INT);
+		if($newCpuDataWidth === false){
+			throw (new \TypeError("data width is not an integer"));
+		}
+		if($newCpuDataWidth <= 0)
+		{
+			throw (new \RangeException("data width is not positive"));
+		}
+		$this->cpuDataWidth = $newCpuDataWidth;
+	}
+
+	/**
+	 * mutator method for cpuSocket
+	 * @param string $newCpuSocket new value of cpu socket
+	 * @throws \UnexpectedValueException if $newCpuModelNumber is not a valid string
+	 **/
+	public function setCpuSocket(string $newCpuSocket) {
+		$newCpuSocket = filter_var($newCpuSocket,FILTER_SANITIZE_EMAIL);
+		if($newCpuSocket === false){
+			throw (new \UnexpectedValueException("socket is not a valid string"));
+		}
+		$this->cpuSocket = $newCpuSocket;
+	}
+
+	/**
+	 * mutator method for cpuOperatingFrequency
+	 * @param float $newCpuOperatingFrequency new value of cpu operating frequency
+	 * @throws \RangeException if $newCpuOperatingFrequency is negative
+	 * @throws \TypeError if $newCpuOperatingFrequency is not an integer
+	 **/
+	public function setCpuOperatingFrequency(float $newCpuOperatingFrequency) {
+		$newCpuOperatingFrequency = filter_var($newCpuOperatingFrequency,FILTER_VALIDATE_FLOAT);
+		if($newCpuOperatingFrequency === false){
+			throw (new \TypeError("operating frequency is not a float"));
+		}
+		if($newCpuOperatingFrequency <= 0) {
+			throw (new \RangeException("operating frequency is not positive"));
+		}
+		$this->cpuOperatingFrequency = $newCpuOperatingFrequency;
+	}
+
+	/**
+	 * mutator method for cpuTurboFrequency
+	 * @param float $newCpuTurboFrequency new value of cpu turbo frequency; may have a null value
+	 * @throws \RangeException if $newCpuTurboFrequency is negative
+	 * @throws \TypeError if $newCpuTurboFrequency is not an integer
+	 **/
+	public function setCpuTurboFrequency(float $newCpuTurboFrequency) {
+		if($newCpuTurboFrequency === null) {
+			$this->cpuTurboFrequency = $newCpuTurboFrequency;
+			return;
+		}
+		$newCpuTurboFrequency = filter_var($newCpuTurboFrequency,FILTER_VALIDATE_FLOAT);
+		if($newCpuTurboFrequency === false){
+			throw (new \TypeError("turbo frequency is not a float"));
+		}
+		if($newCpuTurboFrequency < 0){
+			throw (new \RangeException("turbo frequency is not positive"));
+		}
+		$this->cpuTurboFrequency = $newCpuTurboFrequency;
+	}
+
+	/**
+	 * mutator method for cpuCores
+	 * @param int $newCpuCores new value of cpu cores
+	 * @throws \RangeException if $newCpuCores is negative
+	 * @throws \TypeError if $newCpuCores is not an integer
+	 **/
+	public function setCpuCores(int $newCpuCores) {
+		$newCpuCores = filter_var($newCpuCores,FILTER_VALIDATE_INT);
+		if($newCpuCores === false){
+			throw (new \TypeError("cores is not an integer"));
+		}
+		if($newCpuCores <= 0){
+			throw (new \RangeException("cores is not positive"));
+		}
+		$this->cpuCores = $newCpuCores;
+	}
+
+	/**
+	 * mutator method for the cpuCache
+	 * @param string $newCpuCache new value of cpu cache
+	 * @throws \UnexpectedValueException if $newCpuCache is not a string
+	 **/
+	public function setCpuCache(string $newCpuCache) {
+		$newCpuCache = filter_var($newCpuCache,FILTER_SANITIZE_EMAIL);
+		if($newCpuCache === false){
+			throw (new \UnexpectedValueException("cache is not a valid string"));
+		}
+		$this->cpuCache = $newCpuCache;
+	}
+
+	/**
+	 * mutator method for the cpuIsCoolerIncluded
+	 * @param boolean $newCpuIsCoolerIncluded new value of cooler boolean
+	 **/
+	public function setCpuIsCoolerIncluded(bool $newCpuIsCoolerIncluded) {
+		$this->cpuIsCoolerIncluded = $newCpuIsCoolerIncluded;
+	}
+
+	/**
+	 * mutator method for the cpuIsHyperThreading
+	 * @param boolean $newCpuIsHyperThreading new value of hyperthreading boolean
+	 **/
+	public function setCpuIsHyperThreading(bool $newCpuIsHyperThreading) {
+		$this->cpuIsHyperThreading = $newCpuIsHyperThreading;
+	}
+
+	/**
+	 * mutator method for the cpuIsOnboardGraphics
+	 * @param boolean $newCpuIsOnboardGraphics new value of onboard graphics boolean
+	 **/
+	public function setCpuIsOnboardGraphics(bool $newCpuIsOnboardGraphics) {
+		$this->cpuIsOnboardGraphics = $newCpuIsOnboardGraphics;
 	}
 }
