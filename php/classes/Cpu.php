@@ -387,4 +387,61 @@ class Cpu{
 	public function setCpuIsOnboardGraphics(bool $newCpuIsOnboardGraphics) {
 		$this->cpuIsOnboardGraphics = $newCpuIsOnboardGraphics;
 	}
+	/**
+	 * inserts this Cpu into mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function insert(\PDO $pdo){
+		if($this->cpuId !== null) {
+			throw(new \PDOException("not a new profile"));
+		}
+
+		$query = "INSERT INTO cpu(cpuManufacturer, cpuModelName, cpuModelNumber, cpuDataWidth, cpuSocket, cpuOperatingFrequency, cpuTurboFrequency, cpuCores, cpuCache, cpuIsCoolerIncluded, cpuIsHyperThreading, cpuIsOnboardGraphics) VALUES(:cpuManufacturer, :cpuModelName, :cpuModelNumber, :cpuDataWidth, :cpuSocket, :cpuOperatingFrequency, :cpuTurboFrequency, :cpuCores, :cpuCache, :cpuIsCoolerIncluded, :cpuIsHyperThreading, :cpuIsOnboardGraphics)";
+		$statement = $pdo->prepare($query);
+
+		$parameters = ["cpuManufacturer" => $this->cpuManufacturer, "cpuModelName" => $this->cpuModelName, "cpuModelNumber" => $this->cpuModelNumber, "cpuDataWidth" => $this->cpuDataWidth, "cpuSocket" => $this->cpuSocket, "cpuOperatingFrequency" => $this->cpuOperatingFrequency, "cpuTurboFrequency" => $this->cpuTurboFrequency, "cpuCores" => $this->cpuCores, "cpuCache" => $this->cpuCache, "cpuIsCoolerIncluded" => $this->cpuIsCoolerIncluded, "cpuIsHyperThreading" => $this->cpuIsHyperThreading, "cpuIsOnboardGraphics" => $this->cpuIsOnboardGraphics];
+		$statement->execute($parameters);
+
+		$this->cpuId = intval($pdo->lastInsertId());
+	}
+	/**
+	 * deletes this Cpu from mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function delete(\PDO $pdo){
+		if($this->cpuId === null) {
+			throw(new \PDOException("unable to update a cpu that does not exist"));
+		}
+		$query = "DELETE FROM cpu WHERE cpuId = :cpuId";
+		$statement = $pdo->prepare($query);
+
+		$parameters =["cpuId" => $this->cpuId];
+		$statement->execute($parameters);
+	}
+	/**
+	 * updates this Cpu in mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function update(\PDO $pdo){
+		if($this->cpuId === null) {
+			throw(new \PDOException("unable to update a cpu that does not exist"));
+		}
+
+		$query = "UPDATE cpu SET cpuManufacturer = :cpuManufacturer, cpuModelName = :cpuModelName, cpuModelNumber = :cpuModelNumber, cpuDataWidth = :cpuDataWidth, cpuSocket = :cpuSocket, cpuOperatingFrequency = :cpuOperatingFrequency, cpuTurboFrequency = :cpuTurboFrequency, cpuCores = :cpuCores, cpuCache = :cpuCache, cpuIsCoolerIncluded = :cpuIsCoolerIncluded, cpuIsHyperThreading = :cpuIsHyperThreading, cpuIsOnboardGraphics = :cpuIsOnboardGraphics";
+
+		$statement = $pdo->prepare($query);
+
+		$parameters = ["cpuManufacturer" => $this->cpuManufacturer, "cpuModelName" => $this->cpuModelName, "cpuModelNumber" => $this->cpuModelNumber, "cpuDataWidth" => $this->cpuDataWidth, "cpuSocket" => $this->cpuSocket, "cpuOperatingFrequency" => $this->cpuOperatingFrequency, "cpuTurboFrequency" => $this->cpuTurboFrequency, "cpuCores" => $this->cpuCores, "cpuCache" => $this->cpuCache, "cpuIsCoolerIncluded" => $this->cpuIsCoolerIncluded, "cpuIsHyperThreading" => $this->cpuIsHyperThreading, "cpuIsOnboardGraphics" => $this->cpuIsOnboardGraphics];
+
+		$statement->execute($parameters);
+	}
 }
