@@ -2,7 +2,7 @@
 /**
  * User Profile Class
  *
- * This Profile will contain the users information that can be viewed on their profile page. This can be extended to include favorite cpu's
+ * This Profile will contain the users information that can be viewed on their profile page. This can be extended to include favorite profile's
  * and other information.
  *
  * @author Greg Bloom <gbloomdev@gmail.com>
@@ -86,6 +86,30 @@ class Profile{
 		return $this->profileAbout;
 	}
 	/**
+	 * constructor for this Profile
+	 *
+	 * @param int $newProfileId new value of profile id
+	 * @param string $newProfileImage new value of profile manufacturer
+	 * @param string $newProfileName new value of profile model name
+	 * @param DateTime $newProfileDateCreated new value of profile model number
+	 * @param string $newProfileEmail new value of profile data width
+	 * @param string $newProfileAbout new value of profile socket
+	 *
+	 * @throws UnexpectedValueException if any of the parameters are invalid
+	 **/
+	public function _construct($newProfileId,$newProfileImage,$newProfileName,$newProfileDateCreated,$newProfileEmail,$newProfileAbout){
+		try{
+			$this->setProfileId($newProfileId);
+			$this->setProfileImage($newProfileImage);
+			$this->setProfileName($newProfileName);
+			$this->setProfileDateCreated($newProfileDateCreated);
+			$this->setProfileEmail($newProfileEmail);
+			$this->setProfileAbout($newProfileAbout);
+		}catch(UnexpectedValueException $exception) {
+			throw (new UnexpectedValueException("Unable to construct Profile",0,$exception));
+		}
+	}
+	/**
 	 * mutator method for profileId
 	 *
 	 * @param int|null $newProfileId new value of profile id
@@ -107,7 +131,6 @@ class Profile{
 	}
 	/**
 	 * mutator method for profileImage
-	 *
 	 * @param string $newProfileImage new value of profile image
 	 * @throws UnexpectedValueException if $newProfileImage is not valid
 	 **/
@@ -137,8 +160,6 @@ class Profile{
 	 * mutator method for profileDateCreated
 	 *
 	 * @param DateTime $newProfileDateCreated new value of profile creation date
-	 *
-	 * need to implement a DateTime sanitation method
 	 */
 	public function setProfileDateCreated(DateTime $newProfileDateCreated) {
 		$this->profileDateCreated = $newProfileDateCreated;
@@ -169,5 +190,65 @@ class Profile{
 			throw (new \UnexpectedValueException("about is not a valid string"));
 		}
 		$this->profileAbout = $newProfileAbout;
+	}
+	/**
+	 * inserts this Profile into mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function insert(\PDO $pdo){
+		if($this->profileId !== null) {
+			throw(new \PDOException("not a new profile"));
+		}
+
+		$query = "INSERT INTO profile(profileImage, profileName, profileDateCreated, profileEmail, profileAbout) VALUES(:profileImage,:profileName, :profileDateCreated, :profileEmail, :profileAbout)";
+		$statement = $pdo->prepare($query);
+
+		$formattedDate = $this->profileDateCreated->format("Y-m-d H:i:s");
+		$parameters = ["profileImage" => $this->profileImage, "profileName" => $this->profileName, "profileDateCreated" => $formattedDate, "profileEmail" => $this->profileEmail, "profileAbout" => $this->profileAbout];
+		$statement->execute($parameters);
+
+		$this->profileId = intval($pdo->lastInsertId());
+	}
+	/**
+	 * deletes this Profile from mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function delete(\PDO $pdo) {
+		if($this->profileId === null) {
+			throw(new \PDOException("unable to delete a profile that does not exist"));
+		}
+
+		$query = "DELETE FROM profile WHERE profileId = :profileId";
+		$statement = $pdo->prepare($query);
+
+		$parameters = ["profileId" => $this->profileId];
+		$statement->execute($parameters);
+	}
+
+	/**
+	 * updates this Profile in mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function update(\PDO $pdo) {
+
+		if($this->profileId === null) {
+			throw(new \PDOException("unable to update a profile that does not exist"));
+		}
+
+		$query = "UPDATE profile SET profileImage = :profileImage, profileName = :profileName, profileDateCreated = :profileDateCreated,profileEmail = :profileEmail, profileAbout = :profileAbout WHERE profileId = :profileId";
+		$statement = $pdo->prepare($query);
+
+		$formattedDate = $this->profileDateCreated->format("Y-m-d H:i:s");
+		$parameters = ["profileImage" => $this->profileImage, "profileName" => $this->profileName, "profileDateCreated" => $formattedDate, "profileEmail" => $this->profileEmail,"profileAbout" => $this->profileAbout, "profileId" => $this->profileId];
+		$statement->execute($parameters);
 	}
 }
